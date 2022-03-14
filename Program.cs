@@ -9,59 +9,50 @@ namespace JudgeTown
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Enter the numbers separeted by comma,");
+            Console.WriteLine("where the first one trust in the second one,");
+            Console.Write("the third one trust in the forth one, and so on: "); 
+            // for example: 1, 3, 2, 3 where 1 trust in 3 and 2 trust in 3
 
+            string[] person = Console.ReadLine().Split(',');
 
-            int[] rasc = new int[] { 1, 3, 2, 3};
+            int tams = person.Length;
+            int[] rasc = new int[tams];
+
+            for (int i=0; i < tams; i++)
+            {
+                rasc[i] = int.Parse(person[i]);
+            }
+
             int d = 0;
-            int tam = rasc.Length / 2;
+            int tam = rasc.Length / 2;  // Because there are 2 position for each person
             int[][] ent = new int[tam][];
-            ent[0] = new int[2];
-            ent[1] = new int[2];
-           // ent[2] = new int[2];
-            
+            for (int i = 0; i < tam; i++)
+            {
+                ent[i] = new int[2];  //  ent matrix has 2 dimensions
+            }
 
             for (int k = 0; k < tam; k++)
             {
                 for (int l = 0; l < 2; l++)
                 {
-                    ent[k][l] = rasc[d];
+                    ent[k][l] = rasc[d];  // Fill the ent matrix with the person and their trusted person
                     d++;
                 }
             }
 
-            int res = Solution.findJudge(3, ent);
-            Console.WriteLine(" O juíz é o número " + res);
-            Console.Read();
-            /* Console.Write("Enter N: ");
-             var N = Console.ReadLine();
-             Console.Write("Enter input delimited by comma: ");
-             var input = Console.ReadLine();
-
-             var components = input.Split(',');
-             var myList = new List<int[]>();
-             var size = components.Length;
-
-             int[][] trust = new int[1][];
-             int[] arr = new int[size];
-
-             string[] result = new string[size];
-
-             for (int i = 0; i < size; i++)
-             {
-                 result = components[i].Split(' ');
-                 myList.Insert(i, new int[]{ int.Parse(result[0]), int.Parse(result[1]) });
-
-             }
-
-             trust = myList.Select(a => a.ToArray()).ToArray();
-             Console.WriteLine(Solution.findJudge(int.Parse(N), trust)); */
-
+            int res = Solution.findJudge(ent);
+            if (res != -1)
+            {
+                Console.WriteLine(" The judge is the number " + res);
+            }
+            else
+            {
+                Console.WriteLine(" There's no judge ");
+            }
             
- 
             Console.Read();
-
         }
     }
-
-    
+   
 }

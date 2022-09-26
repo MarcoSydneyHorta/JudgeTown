@@ -7,7 +7,7 @@ namespace JudgeTown
 {
     class Solution
     {
-        public static int findJudge(int[][] trust)
+        public int findJudge(int[][] trust)
         {
             int ans = -1;
             int tam = trust.Length;

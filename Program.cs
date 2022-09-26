@@ -16,32 +16,26 @@ namespace JudgeTown
 
             string[] person = Console.ReadLine().Split(',');
 
-            int tams = person.Length;
-            int[] rasc = new int[tams];
-
-            for (int i=0; i < tams; i++)
-            {
-                rasc[i] = int.Parse(person[i]);
-            }
-
+            int tams = person.Length / 2;  // Because there are 2 position for each person
             int d = 0;
-            int tam = rasc.Length / 2;  // Because there are 2 position for each person
-            int[][] ent = new int[tam][];
-            for (int i = 0; i < tam; i++)
+
+            int[][] ent = new int[tams][];
+           for (int i = 0; i < tams; i++)
             {
                 ent[i] = new int[2];  //  ent matrix has 2 dimensions
             }
-
-            for (int k = 0; k < tam; k++)
+ 
+            for (int k = 0; k < tams; k++)
             {
                 for (int l = 0; l < 2; l++)
                 {
-                    ent[k][l] = rasc[d];  // Fill the ent matrix with the person and their trusted person
+                    ent[k][l] = int.Parse(person[d]);  // Fill the ent matrix with the person and their trusted person
                     d++;
                 }
             }
 
-            int res = Solution.findJudge(ent);
+            Solution solution = new Solution();
+            int res = solution.findJudge(ent);
             if (res != -1)
             {
                 Console.WriteLine(" The judge is the number " + res);
